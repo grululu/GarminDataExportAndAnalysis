@@ -24,6 +24,7 @@ class GarminConnect:
         self.driver.get(self.urlActivities)
         assert "Garmin Connect" in self.driver.title
         print("Getting Activities")
+        self.driver.set_window_size(1920, 1080)
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS, "export-btn")))
         print("Trovato?")
