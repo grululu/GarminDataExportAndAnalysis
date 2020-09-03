@@ -23,7 +23,7 @@ options.add_argument('--disable-application-cache')
 options.add_arguments("test-type")
 options.add_arguments("--js-flags=--expose-gc")
 options.add_arguments("--enable-precise-memory-info")
-options.add_arguments("--disable-default-apps");
+options.add_arguments("--disable-default-apps")
 
 chrome = webdriver.Chrome(chrome_options=options,service_args=["--verbose", "--log-path=/tmp/chrome.log"])
 GC = GC(chrome)
