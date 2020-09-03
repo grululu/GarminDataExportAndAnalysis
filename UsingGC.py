@@ -8,7 +8,7 @@ from Infos import GCuser, GCpass
 # creating display
 display = Display(visible = 0, size = (1080, 1920))
 display.start()
-chrome = webdriver.Chrome()
+chrome = webdriver.Chrome(service_args=["--verbose", "--log-path=/tmp/chrome.log"])
 GC = GC(chrome)
 GC.login(userName = GCuser, passWord = GCpass)
 saved_ids = get_garmin_id(con)
