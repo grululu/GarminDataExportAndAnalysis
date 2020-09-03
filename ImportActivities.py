@@ -1,9 +1,9 @@
 import os, glob
-from geoalchemy2 import WKTElement # To conver geom to WKT
-import pandas as pd
-import geopandas as gpd
-import fiona
-from dbSetup import get_garmin_id, summary, partials, con, meta
+#from geoalchemy2 import WKTElement # To conver geom to WKT
+#import pandas as pd
+#import geopandas as gpd
+#import fiona
+#from dbSetup import get_garmin_id, summary, partials, con, meta
 
 
 def gpx2pg(con, meta, inFolder, inFormat):
