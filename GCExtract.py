@@ -23,6 +23,11 @@ class GarminConnect:
         """Function to navigate on activities page and download data"""
         self.driver.get(self.urlActivities)
         assert "Garmin Connect" in self.driver.title
+        print("Getting Activities")
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.CLASS, "export-btn")))
+        print("Trovato?")
+    
         WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.ID, "activity-name-edit")))
         activities = self.driver.find_elements_by_id("activity-name-edit")
