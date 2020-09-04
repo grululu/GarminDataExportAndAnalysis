@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import time
 
 
 class GarminConnect:
@@ -25,61 +26,66 @@ class GarminConnect:
         assert "Garmin Connect" in self.driver.title
         print("Getting Activities")
         self.driver.set_window_size(1920, 1080)
+        time.sleep(20.4)
+        self.driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
+        params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/media/Activities"}}
+        command_result = self.driver.execute("send_command", params)
+        self.driver.save_screenshot('/tmp/screenie.png')
         WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.CLASS, "export-btn")))
+            EC.presence_of_element_located((By.CLASS_NAME, "export-btn"))).click()
         print("Trovato?")
-    
-        WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.ID, "activity-name-edit")))
-        activities = self.driver.find_elements_by_id("activity-name-edit")
-        validActivities = [i for i in activities if i.text] # if returning only valid activities
-        print("Total Activities: " + str(len(validActivities )))
-        keep = True
-        a = 0
-        while keep:
-            if self.driver.current_url.split("/")[-1] == 'activities':
-                print("In activities general page...")
-                if not activities[a].text:
-                    print("pass")
-                    # pass
-                else:
-                    # Going to activitie page
-                    print("Going to {} activitie page".format(activities[a].text))
-                    activities[a].click()
 
-            # wait until load page
-            WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, "page-previous")))
-            self.driver.implicitly_wait(3)
-            # In activitie page, find the gear icon
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "icon-gear"))).click()
-
-            # Find CSV file and download
-            print("Getting CSV")
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.ID, "btn-export-csv"))).click()
-            # Find if there is a spatial infomation (map)
-            if WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.ID, "activityMapViewPlaceholder"))):
-                # If there is a map, download GPX file
-                print("Getting Map...")
-                WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "icon-gear"))).click()
-                WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.ID, "btn-export-gpx"))).click()
-            else:
-                print("NO GPX FILE")
-                self.driver.implicitly_wait(3)  # seconds
-
-            # Once done, use next icon co go to next activitie
-            print("Going to next activitie...")
-            WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, "page-previous"))).click()
-            nxtid = self.driver.current_url.split("/")[-1]
-            # test if the current activitie is already saved or not.
-            if int(nxtid) in saved_ids:
-                # If it is already saved, change keep to False, to stop *while* loop
-                keep = False
-                print("End of NEW activities download")
-                self.driver.close()
+        #WebDriverWait(self.driver, 10).until(
+                #EC.presence_of_element_located((By.ID, "activity-name-edit")))
+        #activities = self.driver.find_elements_by_id("activity-name-edit")
+        #validActivities = [i for i in activities if i.text] # if returning only valid activities
+        #print("Total Activities: " + str(len(validActivities )))
+        #keep = True
+        #a = 0
+        #while keep:
+            #if self.driver.current_url.split("/")[-1] == 'activities':
+                #print("In activities general page...")
+                #if not activities[a].text:
+                    #print("pass")
+                    ## pass
+                #else:
+                    ## Going to activitie page
+                    #print("Going to {} activitie page".format(activities[a].text))
+                    #activities[a].click()
+#
+            ## wait until load page
+            #WebDriverWait(self.driver, 10).until(
+                #EC.element_to_be_clickable((By.CLASS_NAME, "page-previous")))
+            #self.driver.implicitly_wait(3)
+            ## In activitie page, find the gear icon
+            #WebDriverWait(self.driver, 10).until(
+                #EC.presence_of_element_located((By.CLASS_NAME, "icon-gear"))).click()
+##
+            ## Find CSV file and download
+            #print("Getting CSV")
+            #WebDriverWait(self.driver, 10).until(
+                #EC.presence_of_element_located((By.ID, "btn-export-csv"))).click()
+            ## Find if there is a spatial infomation (map)
+            #if WebDriverWait(self.driver, 10).until(
+                #EC.presence_of_element_located((By.ID, "activityMapViewPlaceholder"))):
+                ## If there is a map, download GPX file
+                #print("Getting Map...")
+                #WebDriverWait(self.driver, 10).until(
+                    #EC.presence_of_element_located((By.CLASS_NAME, "icon-gear"))).click()
+                #WebDriverWait(self.driver, 10).until(
+                    #EC.presence_of_element_located((By.ID, "btn-export-gpx"))).click()
+            #else:
+                #print("NO GPX FILE")
+                #self.driver.implicitly_wait(3)  # seconds
+#
+            ## Once done, use next icon co go to next activitie
+            #print("Going to next activitie...")
+            #WebDriverWait(self.driver, 10).until(
+                #EC.element_to_be_clickable((By.CLASS_NAME, "page-previous"))).click()
+            #nxtid = self.driver.current_url.split("/")[-1]
+            ## test if the current activitie is already saved or not.
+            #if int(nxtid) in saved_ids:
+                ## If it is already saved, change keep to False, to stop *while* loop
+                #keep = False
+                #print("End of NEW activities download")
+                #self.driver.close()
