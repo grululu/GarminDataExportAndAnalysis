@@ -6,10 +6,6 @@ from ImportActivities import gpx2pg, csv2pg
 from Infos import GCuser, GCpass
 from selenium.webdriver.chrome.options import Options
 
-def get_garmin_id():
-        """Get from database the activities ids already saved"""
-        return {}
-
 
 # creating display
 display = Display(visible = 0, size = (1200, 1200))
