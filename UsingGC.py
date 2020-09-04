@@ -9,24 +9,26 @@ from selenium.webdriver.chrome.options import Options
 def get_garmin_id():
         """Get from database the activities ids already saved"""
         return {}
-      
+
 
 # creating display
-display = Display(visible = 0, size = (1080, 1920))
+display = Display(visible = 0, size = (1200, 1200))
+#display = Display(visible = 0, size = (1920, 1920))
+display = Display()
 display.start()
 options = Options()
 options.add_argument('--no-sandbox')
-options.add_argument('--disable-extensions')
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-application-cache')
-options.add_arguments("test-type")
-options.add_arguments("--js-flags=--expose-gc")
-options.add_arguments("--enable-precise-memory-info")
-options.add_arguments("--disable-default-apps")
-#options.add_arguments("--start-maximized")
-options.add_arguments("--disable-dev-shm-usage")
-
+#options.add_argument('--disable-extensions')
+#options.add_argument('--headless')
+#options.add_argument('--disable-gpu')
+#options.add_argument('--disable-application-cache')
+#options.add_argument("test-type")
+#options.add_argument("--js-flags=--expose-gc")
+#options.add_argument("--enable-precise-memory-info")
+#options.add_argument("--disable-default-apps")
+options.add_argument("--disable-dev-shm-usage")
+#options.add_argument("--start-maximized")
+options.add_experimental_option("prefs", {"download.default_directory": "/path/to/download/dir","download.prompt_for_download": False,})
 
 chrome = webdriver.Chrome(chrome_options=options,service_args=["--verbose", "--log-path=/tmp/chrome.log"])
 GC = GC(chrome)
@@ -34,13 +36,4 @@ GC.login(userName = GCuser, passWord = GCpass)
 saved_ids = get_garmin_id()
 GC.getActivities(saved_ids)
 
-# importing Activities to Database
-inFolder = r'/media/Activities'
-inFormat = "gpx"
-
-gpx2pg(con, meta, inFolder, inFormat)
-
-inFolder = r'/media/Activities'
-inFormat = "csv"
-
-csv2pg(con, meta, inFolder, inFormat)
+#csv2pg(con, meta, inFolder, inFormat)
