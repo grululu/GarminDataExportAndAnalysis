@@ -1,6 +1,6 @@
 from selenium import webdriver
 from pyvirtualdisplay import Display
-from GCDriver import GarminConnect as GC
+from GarminConnect import GarminConnect as GC
 from Infos import GCuser, GCpass
 from selenium.webdriver.chrome.options import Options
 
