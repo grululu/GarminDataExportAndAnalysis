@@ -29,7 +29,6 @@ options.add_experimental_option("prefs", {"download.default_directory": "/path/t
 chrome = webdriver.Chrome(chrome_options=options,service_args=["--verbose", "--log-path=/tmp/chrome.log"])
 GC = GC(chrome)
 GC.login(userName = GCuser, passWord = GCpass)
-saved_ids = get_garmin_id()
-GC.getActivities(saved_ids)
+GC.getActivities()
 
 #csv2pg(con, meta, inFolder, inFormat)
