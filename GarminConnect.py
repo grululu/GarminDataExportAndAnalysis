@@ -35,5 +35,5 @@ class GarminConnect:
             EC.presence_of_element_located((By.CLASS_NAME, "export-btn"))).click()
         print("Download Complete?")
 
-    def getClose(self):
+    def close(self):
         self.driver.close()
