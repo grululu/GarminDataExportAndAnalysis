@@ -46,6 +46,7 @@ request = {"function": FUNCTION}
 
 try:
     response = service.scripts().run(body=request, scriptId=API_ID).execute()
+    print(response)
 except errors.HttpError as error:
     # The API encountered a problem.
     print(error.content)
