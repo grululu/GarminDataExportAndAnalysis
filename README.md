@@ -1,5 +1,5 @@
 # Garmin Connect data export
-**About this project:** The main idea of this project is to not only extract all activities data from Garmin Connect for those who use its system, but also to organize both GPX and CSV data on a **PostGIS** database. 
+**About this project:** The main idea of this project is to not only extract all activities data from Garmin Connect for those who use its system
 
 :warning: **Obviously, this project has no relation to Garmin and its use should be tke care of its rigth**.
 
@@ -13,9 +13,31 @@
 :heavy_check_mark: [pandas](https://readthedocs.org/projects/pandas/)  
 :heavy_check_mark: [geopandas](http://geopandas.org/index.html)  
 
-## Setup:
-If you are not interested on organizing your data on PostGIS, ou can skip the database installation and use only function related on [extracting data](#3-extracting-data) but don't skip [info.py](#2-setting-up-infopy-file).  
-More info about [spatial database](https://postgis.net/).
+## Permissions:
+
+
+
+Create a service account on GCP (for example "ecrpublisher")
+Identify the GCP storage object for the container registry
+gsutil ls
+Look for the one like this:
+gs://artifacts.<projectid>.appspot.com/
+and grant permissions:
+ 
+gsutil iam ch serviceAccount:ecrplublisher@<projectid>.iam.gserviceaccount.com:objectAdmin gs://artifacts.<projectid>.appspot.com
+
+## Workload Identity:
+Enable Workload Identity: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+kubectl create serviceaccount --namespace k8s-namespace ksa-name
+
+gcloud iam service-accounts add-iam-policy-binding   --role roles/iam.workloadIdentityUser   --member "serviceAccount:corse-1599310734059.svc.id.goog[default/ecrpublisher]"   ecrplublisher@corse-1599310734059.iam.gserviceaccount.com
+
+kubectl annotate serviceaccount \
+  --namespace default \
+  ecrpublisher \
+  iam.gke.io/gcp-service-account=ecrpublisher@corse-1599310734059.iam.gserviceaccount.com
+  
+  
 
 ### 1) Setup PostgreSQL/GIS
 
