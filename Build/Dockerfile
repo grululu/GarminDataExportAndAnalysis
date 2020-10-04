@@ -5,7 +5,7 @@ RUN mkdir -p /Credentials
 
 ADD credentials.json token.pickle /Credentials/
 
-ADD  installSelenium.sh run.sh  /root/
+ADD  install.sh run.sh  /root/
 
 RUN chmod a+x /root/installSelenium.sh /root/run.sh
 RUN /root/installSelenium.sh
