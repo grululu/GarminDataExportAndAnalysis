@@ -23,13 +23,7 @@ apt-get install -y ./google-chrome-stable_current_amd64.deb
 
 # Install pip:
 apt-get -y install python3-pip
-
-#apt-get clean
-## (Optional) Create and enter a virtual environment:
-# sudo apt-get install python-virtualenv
-# virtualenv env
-# source env/bin/activate
-
+ß
 # Install Selenium and pyvirtualdisplay:
 pip3 install pyvirtualdisplay selenium
 
