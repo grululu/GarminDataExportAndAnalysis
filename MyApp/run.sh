@@ -8,4 +8,5 @@ echo "GCuser=\"$GARMIN_USER\"" > Infos.py
 echo "GCpass=\"$GARMIN_PASSWORD\"" >> Infos.py
 
 python3 Garmin.py
-python3 loadActivitiesOnGo
+python3 loadActivitiesOnGoogleDrive.py
+python3 triggerUpdate.py
