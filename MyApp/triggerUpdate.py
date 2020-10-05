@@ -14,11 +14,12 @@ def get_scripts_service():
     """Calls the Apps Script API.
     """
     creds = None
+    tokenPath=os.environ.get('TOKEN_PATH')
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
+    if os.path.exists(tokenPath):
+        with open(tokenPath, 'rb') as token:
             creds = pickle.load(token)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
