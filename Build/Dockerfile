@@ -7,6 +7,6 @@ RUN mkdir -p /Credentials
 
 ADD  install.sh run.sh  /root/
 
-RUN chmod a+x /root/Selenium.sh /root/run.sh
+RUN chmod a+x /root/install.sh /root/run.sh
 RUN /root/install.sh
 CMD /root/run.sh
