@@ -1,6 +1,6 @@
 #!/bin/sh
-git clone https://github.com/grululu/GarminDataExportAndAnalysis
-cd GarminDataExportAndAnalysis
+#git clone https://github.com/grululu/GarminDataExportAndAnalysis
+cd /MyApp
 echo "GCuser=\"$GARMIN_USER\"" > Infos.py
 echo "GCpass=\"$GARMIN_PASSWORD\"" >> Infos.py
 

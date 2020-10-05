@@ -11,29 +11,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive.appdata','https://www.googleapi
 FOLDER_ID="1u-CnTlzDCZ7abSDz-JaPfcCOreGlvwdv"
 FILE_ID="1_EizWf92dxMpXNUd9rkn_m3tXNbmDFgr"
 
-"""
-def createFolder(service):
-    file_metadata = {
-           'name': 'GarminData',
-           'mimeType': 'application/vnd.google-apps.folder'
-     }
-    file = service.files().create(body=file_metadata,
-                                    #fields='id').execute()
-    print ('Folder ID: %s' % file.get('id'))
 
-def createFile(service):
-    file_metadata = {
-         'name': 'Activities.csv',
-         'parents': [FOLDER_ID]
-    }
-    media = MediaFileUpload('/media/Activities/Activities.csv',
-                        mimetype='text/csv',
-                        resumable=True)
-    file = service.files().create(body=file_metadata,
-                                    #media_body=media,
-                                    #fields='id').execute()
-    print ('File ID: %s' % file.get('id'))
-"""
 def updateFile(service):
     file = service.files().get(fileId=FILE_ID).execute()
     media = MediaFileUpload('/media/Activities/Activities.csv')
@@ -48,8 +26,8 @@ def main():
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
+    if os.path.exists('/etc/token.pickle/token'):
+        with open('/etc/token.pickle/token', 'rb') as token:
             creds = pickle.load(token)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
