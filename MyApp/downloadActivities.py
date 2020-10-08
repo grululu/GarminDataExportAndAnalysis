@@ -1,6 +1,5 @@
 from selenium import webdriver
 from pyvirtualdisplay import Display
-import GarminConnect as GC
 from Infos import GCuser, GCpass
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
