@@ -51,7 +51,7 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_experimental_option("prefs", {"download.default_directory": "/path/to/download/dir","download.prompt_for_download": False,})
 
 chrome = webdriver.Chrome(chrome_options=options,service_args=["--verbose", "--log-path=/tmp/chrome.log"])
-GC = GC(chrome)
+GC = GarminConnect(chrome)
 GC.login(userName = GCuser, passWord = GCpass)
 GC.getActivities()
 GC.close()
