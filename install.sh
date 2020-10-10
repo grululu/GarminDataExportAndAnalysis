@@ -31,5 +31,9 @@ pip3 install pyvirtualdisplay selenium
 #install google apis
 pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
+
+#install kubernetes APIs
+pip3 install kubernetes
+
 apt-get install -y libnss3-tools
 DEBIAN_FRONTEND='noninteractive' apt-get install -y libglib2.0-dev
