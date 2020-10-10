@@ -14,8 +14,8 @@ FILE_ID="1_EizWf92dxMpXNUd9rkn_m3tXNbmDFgr"
 
 def updateFile(service):
     file = service.files().get(fileId=FILE_ID).execute()
-    media = MediaFileUpload('/media/Activities/Activities.csv')
-
+    media = MediaFileUpload('/MyApp/Activities.csv')
+    
     # Send the request to the API.
     updated_file = service.files().update(
         fileId=FILE_ID,
