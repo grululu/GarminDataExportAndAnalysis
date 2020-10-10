@@ -6,7 +6,7 @@ from pprint import pprint
 def create_configmap(api_instance, configmap):
     try:
         api_response = api_instance.create_namespaced_config_map(
-            namespace="default",
+            namespace="tws95",
             body=configmap,
             pretty = 'pretty_example',
         )
@@ -22,8 +22,8 @@ def create_configmap_object():
         annotations=dict(app="test", person="chummy"),
         deletion_grace_period_seconds=30,
         labels=dict(app="test", person="chummy"),
-        name="Activities",
-        namespace="default",
+        name="activities",
+        namespace="tws95",
     )
     # Get File Content
     with open('/MyApp/Activities.csv', 'r') as f:
@@ -32,14 +32,14 @@ def create_configmap_object():
     configmap = client.V1ConfigMap(
         api_version="v1",
         kind="ConfigMap",
-        data=dict(test=file_content),
+        data=dict(activities=file_content),
         metadata=metadata
     )
 
     return configmap
 
 def main():
-    #config.load_kube_config()
+    config.load_kube_config()
     configuration = client.Configuration()
     api_instance = client.CoreV1Api(client.ApiClient(configuration))
 
