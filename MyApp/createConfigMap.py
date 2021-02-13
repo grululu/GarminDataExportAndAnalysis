@@ -41,8 +41,8 @@ def create_configmap_object():
 def main():
     config.load_kube_config()
     configuration = client.Configuration()
-    api_instance = client.CoreV1Api(client.ApiClient(configuration))
-
+    #api_instance = client.CoreV1Api(client.ApiClient(configuration))
+    api_instance = client.CoreV1Api()
     configmap = create_configmap_object()
     create_configmap(api_instance, configmap)
 
