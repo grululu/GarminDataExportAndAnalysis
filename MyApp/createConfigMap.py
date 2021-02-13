@@ -23,7 +23,7 @@ def create_configmap_object():
         deletion_grace_period_seconds=30,
         labels=dict(app="test", person="chummy"),
         name="activities",
-        namespace="tws95",
+        namespace="umbertorace",
     )
     # Get File Content
     with open('/MyApp/Activities.csv', 'r') as f:
