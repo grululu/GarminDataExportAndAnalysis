@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rpa
+spec:
+  template:
+    spec:
+      volumes:
+      - name: secret-volume
+        secret:
+           secretName: token.pickle
+      - name: kubeconfig
+        secret:
+           secretName: microk8skubeconfig
+      containers:
+      - name: runstats
+        image: gcr.io/corse-1599310734059/umbertorace2
+        command: ["/bin/sh","-x"]
+        args:
+          - -c
+          - >-
+              cd /MyApp/ &&
+              export GARMIN_USER=$(echo $GARMIN_USER | tr -d '\040\011\012\015') &&
+              export GARMIN_PASSWORD=$(echo $GARMIN_PASSWORD | tr -d '\040\011\012\015') &&
+              echo "GCuser=\"$GARMIN_USER\"" > Infos.py &&
+              echo "GCpass=\"$GARMIN_PASSWORD\"" >> Infos.py &&
+              python3 downloadActivities.py &&
+              ls /MyApp/Activities.csv &&
+              python3 createConfigMap.py &&
+              sleep 6000
+        volumeMounts:
+        - name: secret-volume
+          readOnly: true
+          mountPath: "/etc/secret-volume"
+        - name: kubeconfig
+          readOnly: true
+          mountPath: "/etc/kubeconfig"
+        env:
+          - name: GARMIN_USER
+            valueFrom:
+               secretKeyRef:
+                 name: garmin
+                 key: username
+          - name: GARMIN_PASSWORD
+            valueFrom:
+               secretKeyRef:
+                 name: garmin
+                 key: password
+          - name: TOKEN_PATH
+            value: "/etc/secret-volume/token"
+          - name: KUBECONFIG
+            value: "/etc/kubeconfig/kubeconfig"
+      imagePullSecrets:
+      -  name: gcr-pull-key
+      restartPolicy: Never
+  backoffLimit: 1
