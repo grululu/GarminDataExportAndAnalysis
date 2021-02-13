@@ -6,7 +6,7 @@ from pprint import pprint
 def create_configmap(api_instance, configmap):
     try:
         api_response = api_instance.create_namespaced_config_map(
-            namespace="tws95",
+            namespace="umbertorace",
             body=configmap,
             pretty = 'pretty_example',
         )
