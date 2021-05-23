@@ -34,7 +34,7 @@ class GarminConnect:
         print("Getting Activities")
         self.driver.set_window_size(1920, 1080)
 
-        WebDriverWait(self.driver, 30).until(
+        WebDriverWait(self.driver, 120).until(
             EC.presence_of_element_located((By.CLASS_NAME, "export-btn"))).click()
         print("Download Complete")
 
