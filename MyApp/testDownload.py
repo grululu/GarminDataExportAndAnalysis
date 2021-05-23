@@ -38,8 +38,6 @@ class GarminConnect:
         self.driver.save_screenshot("/tmp/activities.png")
 
         WebDriverWait(self.driver, 120).until(
-            img = Image.open(StringIO(self.driver.get_screenshot_as_png()))
-            save('/tmp/test.png')
             EC.presence_of_element_located((By.CLASS_NAME, "export-btn"))).click()
         print("Download Complete")
 
