@@ -6,8 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
-from PIL import Image
-from cStringIO import StringIO
+
 
 class GarminConnect:
     def __init__(self, driver):
@@ -22,8 +21,7 @@ class GarminConnect:
         """Function to login to Garmin Connect page"""
         self.driver.get(self.urlLogin)
         assert "GARMIN Authentication Application" in self.driver.title
-        img = Image.open(StringIO(self.driver.get_screenshot_as_png()))
-        save('/tmp/login.png')
+        self.driver.save_screenshot("/tmp/login.png")
         self.driver.find_element_by_id("username").send_keys(userName)
         self.driver.find_element_by_id("password").send_keys(passWord)
         self.driver.find_element_by_id("login-btn-signin").click()
@@ -37,8 +35,7 @@ class GarminConnect:
         assert "Garmin Connect" in self.driver.title
         print("Getting Activities")
         self.driver.set_window_size(1920, 1080)
-        img = Image.open(StringIO(self.driver.get_screenshot_as_png()))
-        save('/tmp/activities.png')
+        self.driver.save_screenshot("/tmp/activities.png")
 
         WebDriverWait(self.driver, 120).until(
             img = Image.open(StringIO(self.driver.get_screenshot_as_png()))
