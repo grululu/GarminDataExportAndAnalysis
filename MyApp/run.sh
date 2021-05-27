@@ -8,6 +8,11 @@ echo "GCuser=\"$GARMIN_USER\"" > Infos.py
 echo "GCpass=\"$GARMIN_PASSWORD\"" >> Infos.py
 
 python3 downloadActivities.py
-sleep 300
+if test -f /MyApp/Activities.csv ; 
+then echo "YES" ; 
+else
+python3 downloadActivities.py
+fi
+
 python3 loadActivitiesOnGoogleDrive.py
 python3 triggerUpdate.py
