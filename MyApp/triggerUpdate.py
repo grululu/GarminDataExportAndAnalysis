@@ -7,7 +7,9 @@ from google.auth.transport.requests import Request
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.currentonly']
-API_ID = "MPXBjd9Jo6JaTAgnJv0OTTgDjbPpXjcUl"
+API_ID = "1pX5WK4qqVlVnQYUxkk56TvX3c9CCIfJH4EW5cKy13qTD2JUXHRyI8ooD"
+API_ID_OLD = "MPXBjd9Jo6JaTAgnJv0OTTgDjbPpXjcUl"
+
 FUNCTION = "importCSVFromGoogleDrive"
 
 def get_scripts_service():
