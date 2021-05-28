@@ -11,7 +11,7 @@ python3 downloadActivities.py
 if test -f /MyApp/Activities.csv ; 
 then echo "YES" ; 
 else
-then echo "DOWNLOAD FAILED, TRYING AGAIN" ; 
+echo "DOWNLOAD FAILED, TRYING AGAIN" ; 
 python3 downloadActivities.py
 fi
 
