@@ -17,3 +17,5 @@ fi
 
 python3 loadActivitiesOnGoogleDrive.py
 python3 triggerUpdate.py
+
+sleep 360
