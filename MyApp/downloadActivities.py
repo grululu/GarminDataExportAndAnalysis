@@ -18,6 +18,8 @@ class GarminConnect:
     def getActivities(self,userName,passWord):
         """Function to navigate on activities page and download data"""
         self.driver.get(self.urlActivities)
+        print ('Title is '+self.driver.title)
+        self.driver.save_screenshot("/tmp/garminConnectEntryPage.png")
         assert "Garmin Connect" in self.driver.title
         self.driver.save_screenshot("/tmp/activities.png")
         print("Getting Activities")
