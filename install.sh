@@ -8,7 +8,7 @@ apt-get -y install unzip
 apt-get -y install wget
 apt-get -y install git
 
-wget -N https://chromedriver.storage.googleapis.com/114.0.5735.16/chromedriver_linux64.zip
+wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 chmod +x chromedriver
 
