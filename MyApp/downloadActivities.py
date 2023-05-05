@@ -28,7 +28,9 @@ class GarminConnect:
         self.driver.find_element(By.ID,"email").send_keys(userName)
         self.driver.find_element(By.ID,"password").send_keys(passWord)
         print("Username "+userName)
-        self.driver.find_element(By.TAG_NAME, "button").click()
+        button=self.driver.find_element(By.XPATH, "//*[@id=\"portal\"]/div[2]/div/div/div/div/form/section[2]/g-button/button")
+        print("Button:"+button.text)
+        button.click()
 
 
         try:
