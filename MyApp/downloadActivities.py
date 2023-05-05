@@ -20,7 +20,7 @@ class GarminConnect:
         self.driver.get(self.urlActivities)
         print ('Title is '+self.driver.title)
         self.driver.save_screenshot("/tmp/garminConnectEntryPage.png")
-        assert "Garmin Connect" in self.driver.title
+        assert "Garmin SSO Portal" in self.driver.title
         self.driver.save_screenshot("/tmp/activities.png")
         print("Getting Activities")
         self.driver.set_window_size(1920, 1080)
