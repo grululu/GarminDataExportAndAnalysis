@@ -27,10 +27,10 @@ class GarminConnect:
         self.driver.save_screenshot("/tmp/activities1.png")
         frameLogin= self.driver.find_element(By.ID,"gauth-widget-frame-gauth-widget")
         self.driver.switch_to.frame(frameLogin)
-        self.driver.find_element((By.ID,"username").send_keys(userName)
-        self.driver.find_element((By.ID,"password").send_keys(passWord)
+        self.driver.find_element(By.ID,"username").send_keys(userName)
+        self.driver.find_element(By.ID,"password").send_keys(passWord)
         print("Username "+userName)
-        self.driver.find_element((By.ID,"login-btn-signin").click()
+        self.driver.find_element(By.TAG_NAME, "button").click()
 
 
         try:
