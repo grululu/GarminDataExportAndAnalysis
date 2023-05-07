@@ -74,7 +74,7 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_experimental_option("prefs", {"download.default_directory": "/path/to/download/dir","download.prompt_for_download": False,})
 
 caps = DesiredCapabilities.CHROME
-caps['loggingPrefs'] = {
+caps['goog:loggingPrefs'] = {
     'browser': 'ALL',
     'performance' : 'ALL',
     }
