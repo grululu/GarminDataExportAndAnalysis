@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 
 class GarminConnect:
@@ -31,7 +32,17 @@ class GarminConnect:
         button=self.driver.find_element(By.XPATH, "//*[@id=\"portal\"]/div[2]/div/div/div/div/form/section[2]/g-button/button")
         print("Button:"+button.text)
         button.click()
-
+        #TRACES
+        print("TRACES AFTER CLICK: PERFORMANCE")
+        ###  connect to my site, do some actions then I call
+        perfs = self.driver.get_log('performance')
+        for row in perfs:
+            print(row)
+        print("TRACES AFTER CLICK: BROWSER")
+        ###  connect to my site, do some actions then I call
+        browserTraces = self.driver.get_log('browser')
+        for row in browserTraces:
+            print(row)
 
         try:
             WebDriverWait(self.driver, 20).until(
@@ -39,6 +50,15 @@ class GarminConnect:
         except Exception as err:
             exception_type = type(err).__name__
             print(exception_type)
+            #TRACES
+            print("TRACES AFTER CLICK: PERFORMANCE")
+            perfs = self.driver.get_log('performance')
+            for row in perfs:
+                print(row)
+            print("TRACES AFTER CLICK: BROWSER")
+            browserTraces = self.driver.get_log('browser')
+            for row in browserTraces:
+                print(row)
             self.driver.save_screenshot("/tmp/activities2.png")
         print("Download Complete")
 
@@ -53,7 +73,18 @@ options.add_argument('--no-sandbox')
 options.add_argument("--disable-dev-shm-usage")
 options.add_experimental_option("prefs", {"download.default_directory": "/path/to/download/dir","download.prompt_for_download": False,})
 
-chrome = webdriver.Chrome(chrome_options=options,service_args=["--verbose", "--log-path=/tmp/chrome.log"])
+caps = DesiredCapabilities.CHROME
+caps['loggingPrefs'] = {
+    'browser': 'ALL',
+    'performance' : 'ALL',
+    }
+caps['perfLoggingPrefs'] = {
+    'enableNetwork' : True,
+    'enablePage' : True,
+    'enableTimeline' : True
+    }
+
+chrome = webdriver.Chrome(chrome_options=options,desired_capabilities=caps,service_args=["--verbose", "--log-path=/tmp/chrome.log"],)
 GC = GarminConnect(chrome)
 GC.getActivities(userName = GCuser, passWord = GCpass)
 GC.close()
