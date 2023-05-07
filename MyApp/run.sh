@@ -9,13 +9,20 @@ echo "GCpass=\"$GARMIN_PASSWORD\"" >> Infos.py
 
 python3 downloadActivities.py
 if test -f /MyApp/Activities.csv ; 
-then echo "YES" ; 
+then echo "Download Completed" ; 
 else
 echo "DOWNLOAD FAILED, TRYING AGAIN" ; 
+sleep 600
 python3 downloadActivities.py
+fi
+
+if test -f /MyApp/Activities.csv ; 
+then echo "Download Completed" ; 
+else
+echo "DOWNLOAD FAILED" ;
+exit 1
 fi
 
 python3 loadActivitiesOnGoogleDrive.py
 python3 triggerUpdate.py
 
-sleep 600
