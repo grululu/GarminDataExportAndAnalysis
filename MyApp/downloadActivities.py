@@ -11,7 +11,7 @@ import time
 class GarminConnect:
     def __init__(self, driver):
         self.driver = driver
-        self.urlActivities = 'https://connect.garmin.com/modern/activities'
+        self.urlActivities = "https://sso.garmin.com/portal/sso/en-US/sign-in?clientId=GarminConnect&service=https://connect.garmin.com/modern/activities"
         self.driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
         params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': "/MyApp"}}
         command_result = self.driver.execute("send_command", params)
