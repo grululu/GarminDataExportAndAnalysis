@@ -12,7 +12,7 @@ if test -f /MyApp/Activities.csv ;
 then echo "Download Completed" ; 
 else
 echo "DOWNLOAD FAILED, TRYING AGAIN" ; 
-sleep 600
+sleep 6000
 python3 downloadActivities.py
 fi
 
