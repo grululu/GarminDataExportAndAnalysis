@@ -18,12 +18,14 @@ python3 downloadActivitiesWithGarminConnect.py
 fi
 
 if test -f /MyApp/Activities.csv ; 
-then echo "Download Completed" ; 
+then echo "Printing Activities" ; 
+head /MyApp/Activities.csv
 else
 echo "DOWNLOAD FAILED" ;
 exit 1
 fi
-
+echo "Loading the file on google drive"
 python3 loadActivitiesOnGoogleDrive.py
+echo "Triggering the update"
 python3 triggerUpdate.py
 
