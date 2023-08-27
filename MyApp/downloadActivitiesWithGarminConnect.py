@@ -38,7 +38,7 @@ def init_api(userName, password):
 
 def loadActivities(api):
     today = datetime.date.today()
-    startdate = today - datetime.timedelta(days=20) # Select past week
+    startdate = today - datetime.timedelta(days=130) 
 
     try:
         activities = api.get_activities_by_date(startdate.isoformat(), today.isoformat(), runningActivityType)
