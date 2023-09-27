@@ -27,6 +27,7 @@ apt-get -y install python3-pip
 # Install Selenium and pyvirtualdisplay:
 pip3 install pyvirtualdisplay selenium
 
+pip3 install garth
 pip3 install garminconnect
 
 #install google apis
