@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 ADD MyApp /MyApp
 
 ADD  install.sh  /root/
