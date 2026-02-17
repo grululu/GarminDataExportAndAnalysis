@@ -29,3 +29,5 @@ python3 loadActivitiesOnGoogleDrive.py
 echo "Triggering the update"
 python3 triggerUpdate.py
 
+sleep 6000
+
