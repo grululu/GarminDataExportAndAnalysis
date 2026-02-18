@@ -23,19 +23,29 @@ apt-get install -y ./google-chrome-stable_current_amd64.deb
 
 # Install pip:
 apt-get -y install python3-pip
-ß
-# Install Selenium and pyvirtualdisplay:
-pip3 install pyvirtualdisplay selenium
+apt-get -y install python3-virtualenv
 
-pip3 install garth
-pip3 install garminconnect
+
+
+virtualenv garmin
+source garmin/bin/activate
+#garmin/bin/pip install google-api-python-client
+#garmin/bin/pip install google_auth_oauthlib
+#garmin/bin/pip install garminconnect
+   
+
+# Install Selenium and pyvirtualdisplay:
+pip install pyvirtualdisplay selenium
+
+pip install garth
+pip install garminconnect
 
 #install google apis
-pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 
 #install kubernetes APIs
-pip3 install kubernetes
+pip install kubernetes
 
 apt-get install -y libnss3-tools
 DEBIAN_FRONTEND='noninteractive' apt-get install -y libglib2.0-dev
