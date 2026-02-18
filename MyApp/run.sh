@@ -1,5 +1,6 @@
 #!/bin/sh
 #git clone https://github.com/grululu/GarminDataExportAndAnalysis
+source /garmin/bin/activate
 cd /MyApp
 export GARMIN_USER=$(echo $GARMIN_USER | tr -d '\040\011\012\015')
 export GARMIN_PASSWORD=$(echo $GARMIN_PASSWORD | tr -d '\040\011\012\015')
