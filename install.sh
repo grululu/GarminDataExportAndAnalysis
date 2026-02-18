@@ -39,6 +39,7 @@ pip install pyvirtualdisplay selenium
 
 pip install garth
 pip install garminconnect
+pip install requests
 
 #install google apis
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
