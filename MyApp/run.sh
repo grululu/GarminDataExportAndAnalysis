@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #git clone https://github.com/grululu/GarminDataExportAndAnalysis
 source /garmin/bin/activate
 cd /MyApp
